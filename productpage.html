@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Ready Companion</title>
+
+    <!-- 🔒 THE GATEKEEPER SCRIPT (Executes before anything renders) -->
+
+    <meta name="description" content="Love Ready companion workbook" />
+    <style>
+      /* Standalone export: all original PDF-page artwork is embedded below. */
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fdf9ef;
+      }
+      body {
+        margin: 0;
+        background: #fdf9ef;
+      }
+      .workbook-companion {
+        min-height: 100vh;
+        color: #3f1120;
+        background: #fdf9ef;
+        font-family: Georgia, serif;
+      }
+      .workbook-pages {
+        width: min(100%, 1224px);
+        margin: 0 auto;
+        padding: 0;
+      }
+      .workbook-page {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #fdf9ef;
+        line-height: 0;
+      }
+      .workbook-page > img {
+        display: block;
+        width: 100%;
+        height: auto;
+        user-select: none;
+        filter: brightness(0.96) contrast(1.16) saturate(1.16);
+      }
+      .workbook-page--reflection {
+        scroll-margin-top: 0;
+      }
+      .workbook-reflection-box {
+        position: absolute;
+        top: 30.8%;
+        left: 11.25%;
+        width: 77.5%;
+        height: 21.5%;
+        resize: none;
+        min-height: 0;
+        max-height: none;
+        padding: 1.25% 1.9%;
+        border: 1px solid #d2cabd;
+        border-radius: 0;
+        outline: none;
+        color: #4d1525;
+        background: #fffdf8;
+        font-family: Georgia, serif;
+        font-size: clamp(14px, 1.75vw, 22px);
+        font-weight: 700;
+        line-height: 1.55;
+        overflow: auto;
+      }
+      .workbook-reflection-box:hover {
+        border-color: #c5a146;
+      }
+      .workbook-reflection-box:focus {
+        border-color: #b88c20;
+        background: #fffdf8;
+        box-shadow: 0 0 0 3px rgba(184, 140, 32, 0.22);
+      }
+      .stay-connected-links {
+        position: absolute;
+        inset: 0;
+        line-height: normal;
+      }
+      .stay-connected-link {
+        position: absolute;
+        right: 9%;
+        left: 9%;
+        display: block;
+        outline: none;
+        border: 0;
+        background: transparent;
+      }
+      .stay-connected-link--community {
+        top: 23.8%;
+        height: 12.2%;
+      }
+      .stay-connected-link--journal {
+        top: 38.4%;
+        height: 12.2%;
+      }
+      .stay-connected-link--share {
+        top: 53.1%;
+        height: 14.2%;
+      }
+      .stay-connected-link:hover {
+        background: rgba(190, 149, 46, 0.05);
+      }
+      .stay-connected-link:focus-visible {
+        box-shadow: inset 0 0 0 3px #bb932d;
+      }
+      @media print {
+        .workbook-reflection-box {
+          display: none !important;
+        }
+        .workbook-companion {
+          background: white;
+        }
+        .workbook-pages {
+          width: 100%;
+          padding: 0;
+        }
+        .workbook-page {
+          width: 100%;
+          margin: 0;
+          box-shadow: none;
+          break-after: page;
+        }
+        .workbook-page > img {
+          width: 100%;
+        }
+      }
+      @media (max-width: 700px) {
+        .workbook-companion {
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+        }
+        .workbook-pages {
+          width: max(820px, 100vw);
+          margin: 0;
+        }
+        .workbook-page {
+          width: 100%;
+          margin: 0;
+        }
+        .workbook-reflection-box {
+          top: 30.75%;
+          left: 11.2%;
+          width: 77.6%;
+          height: 21.5%;
+          max-height: 21.5%;
+          padding: 1.25% 1.8%;
+          font-size: max(18px, 3.45vw);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main
+      id="love-ready-companion"
+      class="workbook-companion"
+      aria-live="polite"
+    ></main>
+    <script>
+      (() => {
+        "use strict";
+
+        const workbooks = {
+          restore: {
+            label: "Restore",
+            pathName: "The Restore Path",
+            pageUrls: [
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/sOUxyFheDBUnpYsJ.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/lLosJpfKvEeTmWhW.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/GPeonruaPfsmbyeu.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/WwBINnVwOcmKddmo.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/FmVdQWNFmqhHZhYs.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/qvfDLyDbGZjvXVir.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/WNdcVWwoipcWINBs.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/SidgfAxQttkiEIrZ.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/jEtbHCQiNHdyBDgr.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/hjvxihCxPgUBFglF.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/HqIkqBGOvPcqikoP.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/HdrzkanieRCZJlgv.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/SnTbJWtYcLgFQHIs.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ZsuRzVYFdUjpMUgk.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/HMhxMSbxJbwdUerD.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/rJsHSbGJfHXOsoHR.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/UFPATHgdnvnVjJlO.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/SLwatQylDlYaLxsS.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/MlwypuSIwPOUTRXX.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/meAzhKHBheygJJBu.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/VeSRKuNzJNFjAPKS.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ZZYqVlCmmVkVqSzE.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ajlpGSCLDdhXSbSf.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/hhmbpUGCngViyckl.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/HApkOClttlPkWoVR.jpg",
+            ],
+            reflectionPages: [4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
+            nextStepsPage: 24,
+          },
+          reimagine: {
+            label: "Reimagine",
+            pathName: "The Reimagine Path",
+            pageUrls: [
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/aQokiWjLbdgYdpHm.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/guthfJLvxVlVEyIk.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ccTETMIvosVAcLjV.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/QCBnKYzMOylIKsVr.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/dQMFhHOJBcJdTljS.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/dPbDmSYpnzMsvUec.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/nTQKKNoCLIPbLCmp.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/GuaIwcTqGfkskyZN.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/kYURLgTwunLWKEQF.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/lGbpadHcimzhwzoK.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/LWjEjcnNZllVkUhS.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/cAyhrFeDClqQMeVA.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/OGvnFTDwgyAGQpWU.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/QgJZLVwHDkgLDBNl.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ngaWtAoBEDbAHypB.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/sLmPCkFZGsyEbbNJ.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/GZmSJTLpdsUaNzdz.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/QqVCVECIsqUjYgEM.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/RBWKyKTGGzuGXHOU.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/YXcDOXYtStUrNEDO.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/eHSMtXhxGKGiiOwy.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/NReOFVJopRUqFiWT.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/lAhsMyHtLeACIjni.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/MwmvlROXIapOJjtX.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/HYZpaAzDVKwkeoCf.jpg",
+            ],
+            reflectionPages: [4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
+            nextStepsPage: 24,
+          },
+          reconnect: {
+            label: "Reconnect",
+            pathName: "The Reconnect Path",
+            pageUrls: [
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/PeZvSYCcrRuXACAh.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/ZrfRFyMGjNhJhIDc.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/QfeJWHRyvXlKXlNM.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/knlmydIefvHYewhM.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/rcqmFLatirgsDksW.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/BhjYlYWeUjqUIHkF.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/VEHzuODEhmMjEjFN.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/oyWZHlhafkRWggEr.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/eboiEvUnMKxERwgK.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/zuZNXDPIpUQmQZgt.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/OrtPRTjgoxEWRQUT.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/zCgFkmQYeViWpXXC.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/dQQyvZPdliFRowiX.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/QtFIYzJGxzgICudt.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/nioqpVdbuUGXiZtW.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/YvQdyVrMqNIVkuvc.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/USdhdcoqhSEryiQJ.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/zkzGVylUsETOuVgE.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/NMhlucHNBikKMqAn.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/YQRiyfnSfHeRFrzz.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/WGZZtvMTrSWETzJO.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/glTJLqBOVODMpsZF.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/XKxNCVSpRKaWzpZK.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/NYxcSgugJTPsSUod.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/wOMmBwUrtBVbjJwH.jpg",
+              "https://files.manuscdn.com/user_upload_by_module/session_file/310519663808823244/cGyOHXYexKWRnOBj.jpg",
+            ],
+            reflectionPages: [4, 6, 9, 11, 13, 15, 17, 19, 21, 23],
+            nextStepsPage: 25,
+          },
+        };
+
+        const pathKeys = Object.keys(workbooks);
+        const selectedPath = new URLSearchParams(window.location.search).get(
+          "path",
+        );
+        const activePath = pathKeys.includes(selectedPath)
+          ? selectedPath
+          : "restore";
+        const workbook = workbooks[activePath];
+        const root = document.getElementById("love-ready-companion");
+
+        document.title = `${workbook.pathName} | Love Ready Companion`;
+        root.dataset.path = activePath;
+        root.setAttribute(
+          "aria-label",
+          `${workbook.pathName} digital workbook`,
+        );
+
+        const reflectionKey = (path, page) =>
+          `dr-love-workbook-reflection:${path}:${page}`;
+
+        const createStayConnectedLinks = () => {
+          const nav = document.createElement("nav");
+          nav.className = "stay-connected-links";
+          nav.setAttribute("aria-label", "Stay connected resources");
+
+          const links = [
+            [
+              "stay-connected-link stay-connected-link--community",
+              "https://t.me/+WUEtkBUFS0dmOTgx",
+              "Open the RRR Love Ready Community",
+            ],
+            [
+              "stay-connected-link stay-connected-link--journal",
+              "https://www.auniqueheart.com/product-page/the-self-love-journal",
+              "Open the Self Love Journal",
+            ],
+            [
+              "stay-connected-link stay-connected-link--share",
+              "https://www.facebook.com/benita.ledet/",
+              "Share your experience with Dr. Benita Ledet on Facebook",
+            ],
+          ];
+
+          links.forEach(([className, href, label]) => {
+            const anchor = document.createElement("a");
+            anchor.className = className;
+            anchor.href = href;
+            anchor.target = "_blank";
+            anchor.rel = "noreferrer";
+            anchor.setAttribute("aria-label", label);
+            nav.appendChild(anchor);
+          });
+          return nav;
+        };
+
+        const pages = document.createElement("section");
+        pages.className = "workbook-pages";
+        pages.setAttribute(
+          "aria-label",
+          `${workbook.pathName} digital workbook`,
+        );
+
+        workbook.pageUrls.forEach((pageUrl, index) => {
+          const pageNumber = index + 1;
+          const isReflectionPage =
+            workbook.reflectionPages.includes(pageNumber);
+          const figure = document.createElement("figure");
+          figure.className = isReflectionPage
+            ? "workbook-page workbook-page--reflection"
+            : "workbook-page";
+          figure.id = `workbook-page-${pageNumber}`;
+
+          const image = document.createElement("img");
+          image.src = pageUrl;
+          image.alt = `${workbook.pathName}, page ${pageNumber}`;
+          image.loading = pageNumber <= 3 ? "eager" : "lazy";
+          figure.appendChild(image);
+
+          if (isReflectionPage) {
+            const textarea = document.createElement("textarea");
+            textarea.className = "workbook-reflection-box";
+            textarea.setAttribute(
+              "aria-label",
+              `${workbook.label} workbook reflection for page ${pageNumber}`,
+            );
+            textarea.placeholder = "";
+            try {
+              textarea.value =
+                window.localStorage.getItem(
+                  reflectionKey(activePath, pageNumber),
+                ) || "";
+            } catch (_) {}
+            textarea.addEventListener("input", () => {
+              try {
+                window.localStorage.setItem(
+                  reflectionKey(activePath, pageNumber),
+                  textarea.value,
+                );
+              } catch (_) {}
+            });
+            figure.appendChild(textarea);
+          }
+
+          if (pageNumber === workbook.nextStepsPage)
+            figure.appendChild(createStayConnectedLinks());
+          pages.appendChild(figure);
+        });
+
+        root.appendChild(pages);
+      })();
+    </script>
+  </body>
+</html>
